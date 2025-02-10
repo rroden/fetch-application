@@ -1,6 +1,14 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+// The following import prevents a Font Awesome icon server-side rendering bug,
+// where the icons flash from a very large icon down to a properly sized one:
+import '@fortawesome/fontawesome-svg-core/styles.css';
+// Prevent fontawesome from adding its CSS since we did it manually above:
+import { config } from '@fortawesome/fontawesome-svg-core';
+import { AuthProvider } from "./context/AuthContext";
+import Script from "next/script";
+config.autoAddCss = false;
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,10 +32,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <Script src="https://kit.fontawesome.com/960238383d.js" crossOrigin="anonymous"></Script>
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <AuthProvider> 
         {children}
+        </AuthProvider>
       </body>
     </html>
   );
