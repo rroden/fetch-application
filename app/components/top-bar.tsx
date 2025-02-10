@@ -12,10 +12,10 @@ export default function TopBar(props: TopBarProps) {
     return (
       <div className="grid grid-cols-2 p-8 h-24">
         <div className="col-span-1 flex flex-row gap-4">
-          <h1 className="text-5xl font-semibold">Homeward Bound</h1>
+          <h1 className="text-2xl md:text-5xl font-semibold">Homeward Bound</h1>
           <FontAwesomeIcon icon={faPaw} className="text-3xl self-center" />
         </div>
-        {isLoggedIn && <button onClick={props.handleLogOut} className="col-span-1 text-xl justify-self-end content-center">Logout</button> }
+        {isLoggedIn && <button onClick={props.handleLogOut} className="col-span-1 text-lg md:text-xl justify-self-end content-center">Logout</button> }
       </div>
       );
 }
